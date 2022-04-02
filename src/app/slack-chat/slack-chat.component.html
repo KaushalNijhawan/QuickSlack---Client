@@ -1,0 +1,29 @@
+<div class = 'homeDiv' style="display:flex;flex-direction:row;height:100%;width:100%">
+    <div class="namespaces" style ="background-color:#242426;height:100vh;width:12%;display: flex;flex-direction: column;">
+        <div style="align-self:center ;margin-top:25px">
+            <img src = '../assets/wiki.jpg' height = '35px' width = '35px' style= 'border-radius: 8px;cursor: pointer;' (click) = "hitDifferentNameSpaces('wikipedia')"/>
+        </div>
+        <div style="align-self:center ; margin-top:15px">
+            <img src = '../assets/linx.jpg' height = '35px' width = '35px' style= 'border-radius: 8px;cursor: pointer'(click) = "hitDifferentNameSpaces('linux')"/>
+        </div>
+        <div style="align-self:center ;margin-top:15px">
+            <img src = '../assets/mozilla.jpg' height = '35px' width = '35px' style= 'border-radius: 8px;cursor: pointer' (click) = "hitDifferentNameSpaces('mozilla')"/>
+        </div>
+    </div>
+    <div class = 'rooms' style="background-color:#232334; height:100vh;width:15%;display: flex; flex-direction: column; justify-content: flex-start;">
+        <div class="h3" style = 'color:white;align-self: center;margin-top: 20px;'>Rooms</div>
+        <div *ngFor = 'let rooms of currentRoomsDisplay; let i = index' style="display:flex;flex-direction:column">
+            <div style="display:flex;flex-irection:row ;margin-top: 10px;color: white;cursor: pointer;margin-left:15%"
+            (click) = 'showChatDisplayForRoom(rooms)' >
+            <span><mat-icon>public</mat-icon></span>
+            <p style="margin-left:10px">{{rooms}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="chat-room" style="width:68%;height:100%">
+        <chat-window *ngIf = "roomSelected" [currentRoomName] = 'currentRoomSelected' [countForRooms]  = 'currentCount'
+        [currentUserName] = 'currentUserName' [currentNameSpaceName] = 'currentNameSpaceString'
+        [joinedRoomChatHistory] = 'joinedRoomChatHistory'></chat-window>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class = 'Chat Window' style="display:flex;flex-direction :column;width:100%;height:100%">
+    <div style="display:flex;flex-direction: row;justify-content: flex-start;margin-top:15px" >
+     <p style="margin-left:20px">{{currentRoomName}}</p>
+     <p style="margin-left:10px">{{countForRooms}}</p>
+     <div style="margin-left:10px">
+         <mat-icon style="color:grey">person</mat-icon>
+     </div>  
+    </div>
+    <div *ngIf="!(joinedRoomChatHistory && joinedRoomChatHistory['historyArr'])" style="margin-left:15px">
+        Welcome to {{currentRoomName}} Chat room! This is the begining of History!
+    </div>
+    <div style="align-self:flex-end;margin-right:-60px;"
+    [style.margin-top] = "(!(joinedRoomChatHistory && joinedRoomChatHistory['historyArr']) ? '-58px' : '-49px' )"
+    [style.margin-bottom] = "(!(joinedRoomChatHistory && joinedRoomChatHistory['historyArr']) ? '' : '10px' )" >
+        <div [formGroup] = 'searchBar'>
+            <input type ='text' style="border-radius:8px;
+            border: 1px solid #ccc;
+            height: 45px;
+            padding: 15px;
+            width: 420px;" placeholder="Search...." formControlName = "searchString" (keypress)="onSearch()">
+        </div>
+    </div>
+    <div style="height:80%;overflow-y: auto;" >
+        <ng-container *ngIf = "joinedRoomChatHistory && joinedRoomChatHistory['historyArr']">
+        <div *ngFor = "let chat of joinedRoomChatHistory['historyArr']">
+        <div style="display:flex;flex-direction:row;margin-top: 25px;margin-left: 18px;">
+            <div class = 'avataar'>
+                <img src = '../../assets/avataar.png' height = '50px' width = '50px'>
+            </div>
+            <div class = 'chatContent' style="display:flex  ; flex-direction : column;" >
+                <div class = 'userAndTime' style = 'margin-left: 12px;'>
+                    <span>{{chat.currentUserName}}</span> <span style="margin-left:12px;color:grey" >{{chat.currentTime}}</span>
+                </div>
+                <div class="chatMessage" style="margin-left : 12px">
+                    {{chat.currentChatMessage}}
+                </div>
+            </div>
+        </div>
+      </div>
+    </ng-container>
+    </div>
+    <div style="align-self:center;width:90%;margin-top:25px" >
+        <input type ='text' style="border-radius: 20px;
+        border: 2px solid #ccc;
+        height: 55px;
+        padding: 15px;
+        width: 90%;align-self: center;" (keydown) = 'onEnteringMessage($event)' placeholder="Enter Your Message...." 
+        [(ngModel)] = 'currentMessage'>
+    </div>
+</div>

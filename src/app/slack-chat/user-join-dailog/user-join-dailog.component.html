@@ -1,0 +1,20 @@
+
+<div style="display:flex;flex-direction:column">
+    <div class="h3" style="align-self:center" mat-dialog-title>
+        Welcome to Slack Chat!
+    </div>
+    <mat-dialog-content>
+    <div style="align-self:center">
+        <div class="input-group" [formGroup] = 'user'>
+          <div class="input-group-text">@</div>
+          <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Enter Your Username ....."
+            formControlName = 'userName' >
+        </div>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+      <div>
+          <button class="btn btn-primary" (click) = 'clickContinue()' [disabled] = '!user.valid'> Continue</button>
+      </div>
+    </mat-dialog-actions>
+</div>
